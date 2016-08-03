@@ -16,6 +16,5 @@ describe('CartSession model', function(){
   it('should respond to its removeItem method', () => {
     expect(CartSession).to.respondTo('removeItem');
   });
-
     // expect(itemsCollection).to.include.keys('itemName');
 });

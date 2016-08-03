@@ -36,13 +36,7 @@ describe('cartSession instance', function(){
       });
     });
   });
-  //
-  // it('should calculate the total price of all items in the cartSession', () => {
-  //   store.cartSession.calcTotalPrice();
-  //   store.cartSession.on('change', function(){
-  //     expect(store.cartSession.get('total')).to.equal(5);
-  //   });
-  // });
+
   it('should respond to the calcTotal function', () => {
     store.cartSession.addItem('milk', 3.00);
     store.cartSession.addItem('razors', 12.00);

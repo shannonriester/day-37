@@ -3,15 +3,15 @@ import React from 'react';
 import store from '../store';
 
 const CartItems = React.createClass({
-  removeItem: function(){
-    let removedItem = store.itemsCollection.get(this.props.id);
-    console.log(removedItem);
+  removeCartItem: function(){
+    // store.cartSession.removeItem(this.props.ItemName, this.props.price);
   },
   render: function(){
+
     <li>
-      <h2>{this.props.item.ItemName}</h2>
-      <data>{this.props.item.price}</data>
-      <button onClick={this.removeItem}>Remove from Cart</button>
+      <h2>Item: </h2>
+      <data>$</data>
+      <button onClick={this.removeCartItem}>Remove from Cart</button>
     </li>
   }
 });

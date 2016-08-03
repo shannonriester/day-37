@@ -6,26 +6,26 @@ import CartItems from './CartItems';
 const Cart = React.createClass({
   getInitialState: function(){
     //with enzyme, you can test .state([key])
-    return {
-      itemList: store.cartSession.itemList,
-      totalPrice: store.cartSession.totalPrice,
-    }
+    return store.cartSession;
+  },
+  componentDidMount: function(){
+    store.cartSession.on('change', () => {
+      this.setState(store.cartSession);
+    });
   },
   render: function(){
-    let itemsArr = store.itemsCollection.filter((itemObj,i) => {
-      console.log('itemObj ', itemObj);
-      console.log(itemObj.id);
-      console.log(itemObj.itemName);
-      console.log(itemObj.Price);
-      
-      return <CartItems key={i} itemName={itemObj.itemName} price={itemObj.price} id={itemObj.id}  />
+    let itemsArr = this.state.get('allItems');
+    let items = itemsArr.map((currItem,i) => {
+      return <CartItems key={i} itemName={currItem.itemName} price={currItem.price} />
     });
 
     return (
       <div className="cart-container">
+        <h2>Your Cart Items:</h2>
         <ul>
-          {itemsArr}
+          {items}
         </ul>
+        <data className="total-price-display">total price: ${store.cartSession.get('total')}</data>
       </div>
     );
   }
