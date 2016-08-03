@@ -8,11 +8,12 @@ const Cart = React.createClass({
     //with enzyme, you can test .state([key])
     return store.cartSession;
   },
-  componentDidMount: function(){
-    store.cartSession.on('change', () => {
-      this.setState(store.cartSession);
-    });
-  },
+  componentDidMount: function() {
+    store.cartSession.on('change update', () => {
+    console.log(store.cartSession.changedAttributes());
+    this.setState(store.cartSession);
+  });
+},
   render: function(){
     let itemsArr = this.state.get('allItems');
     let items = itemsArr.map((currItem,i) => {
@@ -25,7 +26,7 @@ const Cart = React.createClass({
         <ul>
           {items}
         </ul>
-        <data className="total-price-display">total price: ${store.cartSession.get('total')}</data>
+        <data className="price-display">total price: ${store.cartSession.get('total')}</data>
       </div>
     );
   }
